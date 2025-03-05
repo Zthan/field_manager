@@ -1,6 +1,7 @@
 import streamlit as st
 from pybaseball import spraychart
 from pybaseball import playerid_lookup
+from pybaseball import statcast_batter
 import pandas as pd
 
 
