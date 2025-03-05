@@ -33,11 +33,9 @@ else:
 # make year selecteable from list eventually?
 #entered_name.split(' ')
 
-print(name_first)
-print(name_last)
 lookup_number = playerid_lookup(name_last, name_first, fuzzy=True)
 hitter = lookup_number['key_mlbam'].iloc[0]
-print(hitter)
+
 hitter_name_last = lookup_number['name_last'].iloc[0]
 hitter_name_first = lookup_number['name_first'].iloc[0]
 
@@ -67,5 +65,39 @@ if team_stadium !='generic':
 else:
     pass
 fig, ax = plt.subplots()
-ax.plot(spraychart(pitch_data, team_stadium, title=chart_title))
+chart = spraychart(pitch_data, team_stadium, title=chart_title)
+
+fig, ax = plt.subplots(figsize=(8, 8))
+
+singles = chart[chart['type'] == 'singles']
+doubles = chart[chart['type'] == 'doubles']
+triples = chart[chart['type'] == 'triples']
+home_runs = chart[chart['type'] == 'home_runs']
+
+# Plot singles as blue points
+ax.scatter(singles['x'], singles['y'], alpha=0.5, color='blue', label="Singles")
+                                
+# Plot doubles as red points
+ax.scatter(doubles['x'], doubles['y'], alpha=0.5, color='red', label="Doubles")
+
+# Plot triples as green points
+ax.scatter(triples['x'], triples['y'], alpha=0.5, color='green', label="Triples")
+                                                                                                
+# Plot home runs as yellow points
+ax.scatter(home_runs['x'], home_runs['y'], alpha=0.5, color='yellow', label="Home Runs")
+                                                                                                                                                                                
+# Add title and labels
+ax.set_title(f"Spray Chart for {player_name} at {stadium}", fontsize=14)
+ax.set_xlabel('X Position (ft)', fontsize=12)
+                                                    
+ax.set_ylabel('Y Position (ft)', fontsize=12)
+ax.set_xlim(-250, 250)
+ax.set_ylim(0, 400)
+                                                                                                                                                                                                                                                                                                
+# Add a legend to distinguish hit types
+ax.legend(loc='upper right')
+
+# Show plot in Streamlit app
 st.pyplot(fig)
+
+
