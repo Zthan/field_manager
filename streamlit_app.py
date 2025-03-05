@@ -12,11 +12,11 @@ st.write(
 options_dict = {'generic':'Generic', 'angels':'Angels', 'astros':'Astros', 'athletics':'Athletics', 'blue_jays':'Blue Jays', 'braves':'Braves', 'brewers':'Brewers', 'cardinals':'Cardinals', 'cubs':'Cubs', 'diamondbacks':'Diamondbacks', 'dodgers':'Dodgers', 'giants':'Giants', 'indians':'Guardians', 'mariners':'Mariners', 'marlins':'Marlins', 'mets':'Mets', 'nationals':'Nationals', 'orioles':'Orioles', 'padres':'Padres', 'phillies':'Phillies', 'pirates':'Pirates', 'rangers':'Rangers', 'rays':'Rays', 'red_sox':'Red Sox', 'reds':'Reds', 'rockies':'Rockies', 'royals':'Royals', 'tigers':'Tigers', 'twins':'Twins', 'white_sox':'White Sox', 'yankees':'Yankees'}
 
 
-team_stadium = st.selectbox("Choose a stadium:", list(options_dict.keys()))
+
 
 name_first = st.text_input("Enter Player First Name:")
 name_last = st.text_input("Enter Player Last Name:")
-
+team_stadium = st.selectbox("Choose a stadium:", list(options_dict.keys()))
 team_stadium_display = team_stadium
 
 #entered_name = 'Jose Altuve'
