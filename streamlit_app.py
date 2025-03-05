@@ -3,7 +3,7 @@ from pybaseball import spraychart
 from pybaseball import playerid_lookup
 from pybaseball import statcast_batter
 import pandas as pd
-
+import matplotlib.pyploy as plt
 
 st.title("Field Manager Spraychart Generator")
 st.write(
@@ -66,5 +66,6 @@ if team_stadium !='generic':
     pitch_data = pitch_data.loc[pitch_data['home_team'].isin([home_team])]
 else:
     pass
-
-spraychart(pitch_data, team_stadium, title=chart_title)
+fig, ax = plt.subplots()
+ax.plot(spraychart(pitch_data, team_stadium, title=chart_title))
+st.pyplot(fig)
