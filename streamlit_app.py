@@ -8,7 +8,7 @@ st.title("Field Manager Spraychart Generator")
 st.write(
     "This is a simple app. Enter a MLB players first and last name only, no jr's or II or anything else.  Then select the stadium you want to see their spraychart for."
 )
-team_stadium = options_dict = {'generic':'Generic', 'angels':'Angels', 'astros':'Astros', 'athletics':'Athletics', 'blue_jays':'Blue Jays', 'braves':'Braves', 'brewers':'Brewers', 'cardinals':'Cardinals', 'cubs':'Cubs', 'diamondbacks':'Diamondbacks', 'dodgers':'Dodgers', 'giants':'Giants', 'indians':'Guardians', 'mariners':'Mariners', 'marlins':'Marlins', 'mets':'Mets', 'nationals':'Nationals', 'orioles':'Orioles', 'padres':'Padres', 'phillies':'Phillies', 'pirates':'Pirates', 'rangers':'Rangers', 'rays':'Rays', 'red_sox':'Red Sox', 'reds':'Reds', 'rockies':'Rockies', 'royals':'Royals', 'tigers':'Tigers', 'twins':'Twins', 'white_sox':'White Sox', 'yankees':'Yankees'}
+options_dict = {'generic':'Generic', 'angels':'Angels', 'astros':'Astros', 'athletics':'Athletics', 'blue_jays':'Blue Jays', 'braves':'Braves', 'brewers':'Brewers', 'cardinals':'Cardinals', 'cubs':'Cubs', 'diamondbacks':'Diamondbacks', 'dodgers':'Dodgers', 'giants':'Giants', 'indians':'Guardians', 'mariners':'Mariners', 'marlins':'Marlins', 'mets':'Mets', 'nationals':'Nationals', 'orioles':'Orioles', 'padres':'Padres', 'phillies':'Phillies', 'pirates':'Pirates', 'rangers':'Rangers', 'rays':'Rays', 'red_sox':'Red Sox', 'reds':'Reds', 'rockies':'Rockies', 'royals':'Royals', 'tigers':'Tigers', 'twins':'Twins', 'white_sox':'White Sox', 'yankees':'Yankees'}
 
 
 selected_option = st.selectbox("Choose a stadium:", list(options_dict.keys()))
