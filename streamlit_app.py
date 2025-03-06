@@ -9,6 +9,12 @@ import io
 st.title("Field Manager Spraychart Generator")
 st.write(
     "This is a simple app. Enter a MLB player's first and last name only, no Jr's or II or anything else. Then select the stadium you want to see their spraychart for."
+    "The 'Toggle All Hits' toggle will turn all hits for a player on and off.  Currently no legend for hits, but if you toggle all hits on, colors are as follows:"
+    "  \n  Single - Blue"
+    "  \n  Double - Green"
+    "  \n  Triple - Red"
+    "  \n  Home Run - Orange"
+    "  \n  So you can toggle all hits on to see what something is if there aren't very many hits in a stadium."
 )
 
 options_dict = {
@@ -78,10 +84,10 @@ if name_first and name_last:
 
 
         
-        spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title, width=600, height=600)  # Get spray chart image
+        spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title, width=800, height=800)  # Get spray chart image
         
         buffer = io.BytesIO()
-        spray_img.figure.savefig(buffer, format='PNG')
+        spray_img.figure.savefig(buffer, format='png')
         buffer.seek(0)
         overlay = Image.open(buffer)
         img.paste(overlay, (0, 0), overlay)
