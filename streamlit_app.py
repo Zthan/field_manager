@@ -3,6 +3,8 @@ from pybaseball import spraychart, playerid_lookup, statcast_batter
 import pandas as pd
 import matplotlib.pyplot as plt
 from pybaseball import plotting
+from PIL import Image, ImageDraw
+import io
 
 st.title("Field Manager Spraychart Generator")
 st.write(
@@ -46,14 +48,21 @@ if name_first and name_last:
 
         if home_team:
             pitch_data = pitch_data.loc[pitch_data['home_team'] == home_team]
+        img = Image.new('RGB', (800, 800), 'white')
+        draw = ImageDraw.Draw(img)
+
+
+
+        spray_img = spraychart(pitch_data, team_stadium, title=chart_title)  # Get spray chart image
         
-        fig, ax = plt.subplots(figsize=(10, 8))  # Create figure and axis
-        plotting.draw_stadium(team_stadium)  # Draw the stadium first
-        spraychart(pitch_data, team_stadium, title=chart_title).plot(ax=ax)  # Overlay the spray chart
+        buffer = io.BytesIO()
+        spray_img.figure.savefig(buffer, format='PNG')
+        buffer.seek(0)
+        overlay = Image.open(buffer)
+        img.paste(overlay, (0, 0), overlay)
         
-        st.pyplot(fig)  # Display the figure
+        st.image(img, caption=chart_title, use_container_width=True)
     else:
         st.error("Player not found. Please check the spelling and try again.")
-
 
 
