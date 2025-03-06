@@ -20,10 +20,26 @@ options_dict = {
     'royals': 'Royals', 'tigers': 'Tigers', 'twins': 'Twins', 'white_sox': 'White Sox', 'yankees': 'Yankees'
 }
 
+
+#options_dict_2 = dict([(value, key) for key, value in options_dict.items()])
+options_dict_2 = {'Generic':'generic', 'Angels':'angels', 'Astros':'astros', 'Athletics':'athletics', 'Blue Jays':'blue_jays',
+               'Braves':'braves', 'Brewers':'brewers', 'Cardinals':'cardinals', 'Cubs':'cubs', 'Diamondbacks':'diamondbacks',
+               'Dodgers':'dodgers', 'Giants':'giants', 'Guardians':'indians', 'Mariners':'mariners', 'Marlins':'marlins',
+               'Mets':'mets', 'Nationals':'nationals', 'Orioles':'orioles', 'Padres':'padres', 'Phillies':'phillies',
+               'Pirates':'pirates', 'Rangers':'rangers', 'Rays':'rays', 'Red Sox':'red_sox', 'Reds':'reds', 'Rockies':'rockies',
+               'Royals':'royals', 'Tigers':'tigers', 'Twins':'twins', 'White Sox':'white_sox', 'Yankees':'yankees'
+               }
+#options_list = ['Generic', 'Angels', 'Astros', 'Athletics', 'Yankees']
+#options_list = list(options_dict.values())
+options_list = ['Generic', 'Angels', 'Astros', 'Athletics', 'Blue Jays', 'Braves', 'Brewers', 'Cardinals', 'Cubs', 'Diamondbacks',
+                'Dodgers', 'Giants', 'Guardians', 'Mariners', 'Marlins', 'Mets', 'Nationals', 'Orioles', 'Padres', 'Phillies',
+                'Pirates', 'Rangers', 'Rays', 'Red Sox', 'Reds', 'Rockies', 'Royals', 'Tigers', 'Twins', 'White Sox', 'Yankees'
+                ]
 name_first = st.text_input("Enter Player First Name:")
 name_last = st.text_input("Enter Player Last Name:")
-team_stadium = st.selectbox("Choose a stadium:", list(options_dict.keys()))
-team_stadium_display = options_dict.get(team_stadium, team_stadium)
+team_stadium = st.selectbox("Choose a stadium:", options_list)
+team_stadium_display = options_dict_2.get(team_stadium, None)
+
 
 if name_first and name_last:
     lookup_number = playerid_lookup(name_last, name_first, fuzzy=True)
@@ -39,12 +55,13 @@ if name_first and name_last:
                              'rangers': 'TEX', 'rays': 'TB', 'red_sox': 'BOS', 'reds': 'CIN', 'rockies': 'COL',
                              'royals': 'KC', 'tigers': 'DET', 'twins': 'MIN', 'white_sox': 'CWS', 'yankees': 'NYY'}
 
-        home_team = team_stadium_dict.get(team_stadium, None)
+        home_team = team_stadium_dict.get(team_stadium_display, None)
         chart_title = f"{hitter_name_first} {hitter_name_last} @ {team_stadium_display} Stadium"
 
         pitch_data = statcast_batter('2024-03-28', '2024-09-30', hitter)
         pitch_data = pitch_data.loc[pitch_data['batter'] == hitter]
         pitch_data = pitch_data.loc[pitch_data['events'].isin(['single', 'double', 'triple', 'home_run'])]
+        pitch_data.sort_values('events')
 
         if home_team:
             pitch_data = pitch_data.loc[pitch_data['home_team'] == home_team]
@@ -52,8 +69,8 @@ if name_first and name_last:
         draw = ImageDraw.Draw(img)
 
 
-
-        spray_img = spraychart(pitch_data, team_stadium, title=chart_title)  # Get spray chart image
+        
+        spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title, width=500, height=500)  # Get spray chart image
         
         buffer = io.BytesIO()
         spray_img.figure.savefig(buffer, format='PNG')
