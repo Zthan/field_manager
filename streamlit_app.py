@@ -48,7 +48,14 @@ if name_first and name_last:
         hitter_name_last = lookup_number['name_last'].iloc[0]
         hitter_name_first = lookup_number['name_first'].iloc[0]
         
-        team_stadium_dict = {'angels': 'LAA', 'astros': 'HOU', 'athletics': 'ATH', 'blue_jays': 'TOR', 'braves': 'ATL',
+        team_stadium_dict = {'angels': 'LAA', 'astros': 'HOU', 'athletics': 'OAK', 'blue_jays': 'TOR', 'braves': 'ATL',
+                             'brewers': 'MIL', 'cardinals': 'STL', 'cubs': 'CHC', 'diamondbacks': 'AZ', 'dodgers': 'LAD',
+                             'giants': 'SF', 'indians': 'CLE', 'mariners': 'SEA', 'marlins': 'MIA', 'mets': 'NYM',
+                             'nationals': 'WSH', 'orioles': 'BAL', 'padres': 'SD', 'phillies': 'PHI', 'pirates': 'PIT',
+                             'rangers': 'TEX', 'rays': 'TB', 'red_sox': 'BOS', 'reds': 'CIN', 'rockies': 'COL',
+                             'royals': 'KC', 'tigers': 'DET', 'twins': 'MIN', 'white_sox': 'CWS', 'yankees': 'NYY'}
+        
+        team_stadium_dict_2025 = {'angels': 'LAA', 'astros': 'HOU', 'athletics': 'ATH', 'blue_jays': 'TOR', 'braves': 'ATL',
                              'brewers': 'MIL', 'cardinals': 'STL', 'cubs': 'CHC', 'diamondbacks': 'AZ', 'dodgers': 'LAD',
                              'giants': 'SF', 'indians': 'CLE', 'mariners': 'SEA', 'marlins': 'MIA', 'mets': 'NYM',
                              'nationals': 'WSH', 'orioles': 'BAL', 'padres': 'SD', 'phillies': 'PHI', 'pirates': 'PIT',
@@ -70,7 +77,7 @@ if name_first and name_last:
 
 
         
-        spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title, width=500, height=500)  # Get spray chart image
+        spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title, width=600, height=600)  # Get spray chart image
         
         buffer = io.BytesIO()
         spray_img.figure.savefig(buffer, format='PNG')
