@@ -2,7 +2,7 @@ import streamlit as st
 from pybaseball import spraychart, playerid_lookup, statcast_batter
 import pandas as pd
 import matplotlib.pyplot as plt
-from pybaseball.plotting import draw_stadium
+from pybaseball import plotting
 
 st.title("Field Manager Spraychart Generator")
 st.write(
@@ -48,7 +48,7 @@ if name_first and name_last:
             pitch_data = pitch_data.loc[pitch_data['home_team'] == home_team]
         
         fig, ax = plt.subplots(figsize=(10, 8))  # Create figure and axis
-        draw_stadium(team_stadium, ax=ax)  # Draw the stadium first
+        plotting.draw_stadium(team_stadium, ax=ax)  # Draw the stadium first
         spraychart(pitch_data, team_stadium, title=chart_title).plot(ax=ax)  # Overlay the spray chart
         
         st.pyplot(fig)  # Display the figure
