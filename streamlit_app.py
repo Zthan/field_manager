@@ -47,7 +47,7 @@ if name_first and name_last:
             pitch_data = pitch_data.loc[pitch_data['home_team'] == home_team]
         
         fig, ax = plt.subplots(figsize=(10, 8))  # Create figure and axis
-        spraychart(pitch_data, team_stadium, title=chart_title, ax=ax)  # Pass ax explicitly
+        spraychart(pitch_data, team_stadium, title=chart_title)  # Pass ax explicitly
         st.pyplot(fig)  # Display the figure
     else:
         st.error("Player not found. Please check the spelling and try again.")
