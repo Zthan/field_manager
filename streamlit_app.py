@@ -48,7 +48,7 @@ if name_first and name_last:
             pitch_data = pitch_data.loc[pitch_data['home_team'] == home_team]
         
         fig, ax = plt.subplots(figsize=(10, 8))  # Create figure and axis
-        plotting.draw_stadium(team_stadium, ax=ax)  # Draw the stadium first
+        plotting.draw_stadium(team_stadium)  # Draw the stadium first
         spraychart(pitch_data, team_stadium, title=chart_title).plot(ax=ax)  # Overlay the spray chart
         
         st.pyplot(fig)  # Display the figure
