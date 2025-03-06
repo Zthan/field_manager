@@ -39,7 +39,7 @@ name_first = st.text_input("Enter Player First Name:")
 name_last = st.text_input("Enter Player Last Name:")
 team_stadium = st.selectbox("Choose a stadium:", options_list)
 team_stadium_display = options_dict_2.get(team_stadium, None)
-
+away_off = st.checkbox('Toggle All Hits')
 
 if name_first and name_last:
     lookup_number = playerid_lookup(name_last, name_first, fuzzy=True)
@@ -71,7 +71,8 @@ if name_first and name_last:
         pitch_data.sort_values('events')
 
         if home_team:
-            pitch_data = pitch_data.loc[pitch_data['home_team'] == home_team]
+            if away_off == False:
+                pitch_data = pitch_data.loc[pitch_data['home_team'] == home_team]
         img = Image.new('RGB', (800, 800), 'white')
         draw = ImageDraw.Draw(img)
 
