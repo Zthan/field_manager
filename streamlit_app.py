@@ -76,25 +76,25 @@ chart = spraychart(pitch_data, team_stadium, title=chart_title)
 
 fig, ax = plt.subplots(figsize=(8, 8))
 
-singles = chart[chart['type'] == 'singles']
-doubles = chart[chart['type'] == 'doubles']
-triples = chart[chart['type'] == 'triples']
-home_runs = chart[chart['type'] == 'home_runs']
+#singles = chart[chart['type'] == 'singles']
+#doubles = chart[chart['type'] == 'doubles']
+#triples = chart[chart['type'] == 'triples']
+#home_runs = chart[chart['type'] == 'home_runs']
 
 # Plot singles as blue points
-ax.scatter(singles['x'], singles['y'], alpha=0.5, color='blue', label="Singles")
+#ax.scatter(singles['x'], singles['y'], alpha=0.5, color='blue', label="Singles")
 
 # Plot doubles as red points
-ax.scatter(doubles['x'], doubles['y'], alpha=0.5, color='red', label="Doubles")
+#ax.scatter(doubles['x'], doubles['y'], alpha=0.5, color='red', label="Doubles")
 
 # Plot triples as green points
-ax.scatter(triples['x'], triples['y'], alpha=0.5, color='green', label="Triples")
+#ax.scatter(triples['x'], triples['y'], alpha=0.5, color='green', label="Triples")
 
 # Plot home runs as yellow points
-ax.scatter(home_runs['x'], home_runs['y'], alpha=0.5, color='yellow', label="Home Runs")
+#ax.scatter(home_runs['x'], home_runs['y'], alpha=0.5, color='yellow', label="Home Runs")
 
 # Add title and labels
-ax.set_title(f"Spray Chart for {player_name} at {stadium}", fontsize=14)
+#ax.set_title(f"Spray Chart for {player_name} at {stadium}", fontsize=14)
 ax.set_xlabel('X Position (ft)', fontsize=12)
 
 ax.set_ylabel('Y Position (ft)', fontsize=12)
