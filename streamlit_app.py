@@ -6,8 +6,8 @@ import pandas as pd
 
 st.title("Field Manager Spraychart Generator")
 st.write(
-    "Choose an MLB player and then select on which stadium you want to see their hits overlayed."
-    "The 'Toggle Only Hits at this Stadium' toggle will turn all hits for a player on and off."
+    "Choose an MLB player and then select on which stadium you want to see their hits overlayed. "
+    "The 'Toggle Only Hits at this Stadium' toggle will turn all hits for a player on and off. "
     "Year Toggles will turn on or off the hit data from that year."
 )
 
@@ -36,7 +36,8 @@ options_list = ['Generic', 'Angels', 'Astros', 'Athletics', 'Blue Jays', 'Braves
                 'Pirates', 'Rangers', 'Rays', 'Red Sox', 'Reds', 'Rockies', 'Royals', 'Tigers', 'Twins', 'White Sox', 'Yankees'
                 ]
 # get the register data
-data = chadwick_register()
+#data = chadwick_register()
+data = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/chadwick.csv')
 
 #def load_original_data():
 #    url = 'https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/chadwick.csv'
@@ -48,7 +49,7 @@ data = chadwick_register()
 #        return None'
 
 
-data = data.loc[data['mlb_played_last'].isin([2024, 2023, 2022])]
+#data = data.loc[data['mlb_played_last'].isin([2024, 2023, 2022])]
 full_names = data.apply(lambda row: f"{row['name_first']} {row['name_last']}", axis=1).tolist()
 
 
@@ -60,9 +61,9 @@ name_last = entered_name.split(' ')[1]
 team_stadium = st.selectbox("Choose a stadium:", options_list)
 team_stadium_display = options_dict_2.get(team_stadium, None)
 away_off = st.checkbox('Toggle Only Hits at this Stadium')
-year_2024 = st.checkbox('2024')
-year_2023 = st.checkbox('2023')
-year_2022 = st.checkbox('2022')
+#year_2024 = st.checkbox('2024')
+#year_2023 = st.checkbox('2023')
+#year_2022 = st.checkbox('2022')
 
 if name_first and name_last:
     lookup_number = playerid_lookup(name_last, name_first, fuzzy=True)
