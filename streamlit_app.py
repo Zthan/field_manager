@@ -86,13 +86,14 @@ if name_first and name_last:
         
         spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title, width=800, height=800)  # Get spray chart image
         
-        buffer = io.BytesIO()
-        spray_img.figure.savefig(buffer, format='png')
-        buffer.seek(0)
-        overlay = Image.open(buffer)
-        img.paste(overlay, (0, 0), overlay)
+        #buffer = io.BytesIO()
+        #spray_img.figure.savefig(buffer, format='png')
+        #buffer.seek(0)
+        #overlay = Image.open(buffer)
+        #img.paste(overlay, (0, 0), overlay)
         
-        st.image(img, caption=chart_title, use_container_width=True)
+        #st.image(img, caption=chart_title, use_container_width=True)
+        st.pyplot(spray_img)
     else:
         st.error("Player not found. Please check the spelling and try again.")
 
