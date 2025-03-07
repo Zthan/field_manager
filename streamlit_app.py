@@ -101,7 +101,7 @@ if name_first and name_last:
         pitch_data = statcast_batter('2024-03-20', '2024-09-30', hitter)
         pitch_data = pitch_data.loc[pitch_data['batter'] == hitter]
         pitch_data = pitch_data.loc[pitch_data['events'].isin(['single', 'double', 'triple', 'home_run'])]
-        pitch_data.sort_values('events')
+        #pitch_data.sort_values('events')
 
         if home_team:
             if away_off == True:
