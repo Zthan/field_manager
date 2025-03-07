@@ -72,7 +72,7 @@ if name_first and name_last:
         hitter_name_last = lookup_number['name_last'].iloc[0]
         hitter_name_first = lookup_number['name_first'].iloc[0]
         
-        team_stadium_dict = {'angels': 'LAA', 'astros': 'HOU', 'athletics': 'OAK', 'blue_jays': 'TOR', 'braves': 'ATL',
+        team_stadium_dict = {'angels': 'LAA', 'astros': 'HOU', 'athletics': 'ATH', 'blue_jays': 'TOR', 'braves': 'ATL',
                              'brewers': 'MIL', 'cardinals': 'STL', 'cubs': 'CHC', 'diamondbacks': 'AZ', 'dodgers': 'LAD',
                              'giants': 'SF', 'indians': 'CLE', 'mariners': 'SEA', 'marlins': 'MIA', 'mets': 'NYM',
                              'nationals': 'WSH', 'orioles': 'BAL', 'padres': 'SD', 'phillies': 'PHI', 'pirates': 'PIT',
