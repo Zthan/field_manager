@@ -13,8 +13,7 @@ st.write(
     "This is a simple app. Enter a MLB player's first and last name only, no Jr's or II or anything else. Then select the stadium you want to see their spraychart for."
     "The 'Toggle Only Hits at this Stadium' toggle will turn all hits for a player on and off."
 )
-#plist_creation = statcast('2024-03-28', '2024-09-30')
-#hitter_unique = plist_creation.batter.unique()
+
 options_dict = {
     'generic': 'Generic', 'angels': 'Angels', 'astros': 'Astros', 'athletics': 'Athletics', 'blue_jays': 'Blue Jays',
     'braves': 'Braves', 'brewers': 'Brewers', 'cardinals': 'Cardinals', 'cubs': 'Cubs', 'diamondbacks': 'Diamondbacks',
@@ -40,7 +39,7 @@ options_list = ['Generic', 'Angels', 'Astros', 'Athletics', 'Blue Jays', 'Braves
                 'Pirates', 'Rangers', 'Rays', 'Red Sox', 'Reds', 'Rockies', 'Royals', 'Tigers', 'Twins', 'White Sox', 'Yankees'
                 ]
 # get the register data
-#data = chadwick_register()
+data = chadwick_register()
 def load_original_data():
     url = 'https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/chadwick.csv'
     response = requests.get(url)
@@ -50,13 +49,13 @@ def load_original_data():
         st.error("Failed to load data from GitHub.")
         return None
 #data = load_original_data()
-#data = data.loc[data['mlb_played_last'].isin([2024, 2023, 2022])]
-#full_names = data.apply(lambda row: f"{row['name_first']} {row['name_last']}", axis=1).tolist()
+data = data.loc[data['mlb_played_last'].isin([2024, 2023, 2022])]
+full_names = data.apply(lambda row: f"{row['name_first']} {row['name_last']}", axis=1).tolist()
 
 #name_first = entered_name.split(' ')[0]
 #name_last = entered_name.split(' ')[1]
 
-#entered_name = st.selectbox("Pick an MLB Player.", full_names)
+entered_name = st.selectbox("Pick an MLB Player.", full_names)
 #name_first = entered_name.split(' ')[0]
 #name_last = entered_name.split(' ')[1]
 name_first = st.text_input("Enter Player First Name:")
