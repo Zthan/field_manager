@@ -38,8 +38,8 @@ options_list = ['Generic', 'Angels', 'Astros', 'Athletics', 'Blue Jays', 'Braves
                 'Pirates', 'Rangers', 'Rays', 'Red Sox', 'Reds', 'Rockies', 'Royals', 'Tigers', 'Twins', 'White Sox', 'Yankees'
                 ]
 # get the register data
-data = chadwick_register()
-
+#data = chadwick_register()
+data = pd.read_csv('chadwick.csv')
 data = data.loc[data['mlb_played_last'].isin([2024, 2023, 2022])]
 full_names = data.apply(lambda row: f"{row['name_first']} {row['name_last']}", axis=1).tolist()
 
