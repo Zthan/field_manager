@@ -49,18 +49,18 @@ def load_original_data():
     else:
         st.error("Failed to load data from GitHub.")
         return None
-data = load_original_data()
-data = data.loc[data['mlb_played_last'].isin([2024, 2023, 2022])]
-full_names = data.apply(lambda row: f"{row['name_first']} {row['name_last']}", axis=1).tolist()
+#data = load_original_data()
+#data = data.loc[data['mlb_played_last'].isin([2024, 2023, 2022])]
+#full_names = data.apply(lambda row: f"{row['name_first']} {row['name_last']}", axis=1).tolist()
 
 #name_first = entered_name.split(' ')[0]
 #name_last = entered_name.split(' ')[1]
 
-entered_name = st.selectbox("Pick an MLB Player.", full_names)
-name_first = entered_name.split(' ')[0]
-name_last = entered_name.split(' ')[1]
-#name_first = st.text_input("Enter Player First Name:")
-#name_last = st.text_input("Enter Player Last Name:")
+#entered_name = st.selectbox("Pick an MLB Player.", full_names)
+#name_first = entered_name.split(' ')[0]
+#name_last = entered_name.split(' ')[1]
+name_first = st.text_input("Enter Player First Name:")
+name_last = st.text_input("Enter Player Last Name:")
 team_stadium = st.selectbox("Choose a stadium:", options_list)
 team_stadium_display = options_dict_2.get(team_stadium, None)
 away_off = st.checkbox('Toggle Only Hits at this Stadium')
