@@ -92,8 +92,8 @@ if name_first and name_last:
         overlay = Image.open(buffer)
         img.paste(overlay, (0, 0), overlay)
         
-        #st.image(img, caption=chart_title, use_container_width=True)
-        st.pyplot(spray_img)
+        st.image(img, caption=chart_title, use_container_width=True)
+        #st.pyplot(spray_img)
     else:
         st.error("Player not found. Please check the spelling and try again.")
 
