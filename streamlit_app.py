@@ -13,8 +13,8 @@ st.write(
     "This is a simple app. Enter a MLB player's first and last name only, no Jr's or II or anything else. Then select the stadium you want to see their spraychart for."
     "The 'Toggle Only Hits at this Stadium' toggle will turn all hits for a player on and off."
 )
-plist_creation = statcast('2024-03-28', '2024-09-30')
-hitter_unique = plist_creation.batter.unique()
+#plist_creation = statcast('2024-03-28', '2024-09-30')
+#hitter_unique = plist_creation.batter.unique()
 options_dict = {
     'generic': 'Generic', 'angels': 'Angels', 'astros': 'Astros', 'athletics': 'Athletics', 'blue_jays': 'Blue Jays',
     'braves': 'Braves', 'brewers': 'Brewers', 'cardinals': 'Cardinals', 'cubs': 'Cubs', 'diamondbacks': 'Diamondbacks',
