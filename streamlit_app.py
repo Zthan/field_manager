@@ -78,6 +78,6 @@ if name_first and name_last:
         st.pyplot(spray_img.figure)
     else:
         st.error("Player not found. Please check the spelling and try again.")
-``` 
+
 
 
