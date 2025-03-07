@@ -61,9 +61,18 @@ name_last = entered_name.split(' ')[1]
 team_stadium = st.selectbox("Choose a stadium:", options_list)
 team_stadium_display = options_dict_2.get(team_stadium, None)
 away_off = st.checkbox('Toggle Only Hits at this Stadium')
-#year_2024 = st.checkbox('2024')
-#year_2023 = st.checkbox('2023')
-#year_2022 = st.checkbox('2022')
+year_2024 = st.checkbox('2024')
+year_2023 = st.checkbox('2023')
+year_2022 = st.checkbox('2022')
+#year_2025 = st.checkbox('2025')
+
+
+pitch_data_22 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2022_spraychart_events.csv')
+pitch_data_23 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2023_spraychart_events.csv')
+pitch_data_24 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2024_spraychart_events.csv')  # Get the data for the spray chart
+#pitch_data_25 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2025_spraychart_events.csv')  # Get the data for the spray chart
+
+
 
 if name_first and name_last:
     lookup_number = playerid_lookup(name_last, name_first, fuzzy=True)
@@ -89,22 +98,22 @@ if name_first and name_last:
         home_team = team_stadium_dict.get(team_stadium_display, None)
         chart_title = f"{hitter_name_first} {hitter_name_last} @ {team_stadium_display} Stadium"
 
-        # working on year toggle, needs more work before committing
-        #def cum_pitch_data():
+        # Combine pitch data based on year toggles
+        pitch_data = pd.DataFrame()
+        if year_2022:
+            pitch_data = pd.concat([pitch_data, pitch_data_22])
+        if year_2023:
+            pitch_data = pd.concat([pitch_data, pitch_data_23])
+        if year_2024:
+            pitch_data = pd.concat([pitch_data, pitch_data_24])
+        #if year_2025:
+        #    pitch_data = pd.concat([pitch_data, pitch_data_25])
 
-        #if year_2023:
-        #    pitch_data_23 = statcast_batter('2023-03-30', '2023-10-01', hitter)
-        #    pitch_data_23 = pitch_data_23.loc[pitch_data_23['batter'] == hitter]
-        #    pitch_data_23 = pitch_data_23.loc[pitch_data_23['events'].isin(['single', 'double', 'triple', 'home_run'])]
-        #    pitch_data_23.sort_values('events')
-            
-        pitch_data = statcast_batter('2024-03-20', '2024-09-30', hitter)
-        pitch_data = pitch_data.loc[pitch_data['batter'] == hitter]
-        pitch_data = pitch_data.loc[pitch_data['events'].isin(['single', 'double', 'triple', 'home_run'])]
-        #pitch_data.sort_values('events')
+        pitch_data = pitch_data.loc[pitch_data['batter'].isin([hitter])]
+        #pitch_data = pitch_data.loc[pitch_data['events'].isin(['single', 'double', 'triple', 'home_run'])]
 
         if home_team:
-            if away_off == True:
+            if away_off:
                 pitch_data = pitch_data.loc[pitch_data['home_team'] == home_team]
 
         spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title, width=800, height=800)  # Get spray chart image
