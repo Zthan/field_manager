@@ -60,13 +60,6 @@ if name_first and name_last:
                              'nationals': 'WSH', 'orioles': 'BAL', 'padres': 'SD', 'phillies': 'PHI', 'pirates': 'PIT',
                              'rangers': 'TEX', 'rays': 'TB', 'red_sox': 'BOS', 'reds': 'CIN', 'rockies': 'COL',
                              'royals': 'KC', 'tigers': 'DET', 'twins': 'MIN', 'white_sox': 'CWS', 'yankees': 'NYY'}
-        
-        team_stadium_dict_2025 = {'angels': 'LAA', 'astros': 'HOU', 'athletics': 'ATH', 'blue_jays': 'TOR', 'braves': 'ATL',
-                             'brewers': 'MIL', 'cardinals': 'STL', 'cubs': 'CHC', 'diamondbacks': 'AZ', 'dodgers': 'LAD',
-                             'giants': 'SF', 'indians': 'CLE', 'mariners': 'SEA', 'marlins': 'MIA', 'mets': 'NYM',
-                             'nationals': 'WSH', 'orioles': 'BAL', 'padres': 'SD', 'phillies': 'PHI', 'pirates': 'PIT',
-                             'rangers': 'TEX', 'rays': 'TB', 'red_sox': 'BOS', 'reds': 'CIN', 'rockies': 'COL',
-                             'royals': 'KC', 'tigers': 'DET', 'twins': 'MIN', 'white_sox': 'CWS', 'yankees': 'NYY'}
 
         home_team = team_stadium_dict.get(team_stadium_display, None)
         chart_title = f"{hitter_name_first} {hitter_name_last} @ {team_stadium_display} Stadium"
@@ -79,22 +72,12 @@ if name_first and name_last:
         if home_team:
             if away_off == False:
                 pitch_data = pitch_data.loc[pitch_data['home_team'] == home_team]
-        img = Image.new('RGB', (800, 800), 'white')
-        draw = ImageDraw.Draw(img)
 
-
-        
         spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title, width=800, height=800)  # Get spray chart image
         
-        buffer = io.BytesIO()
-        spray_img.figure.savefig(buffer, format='png')
-        buffer.seek(0)
-        overlay = Image.open(buffer)
-        img.paste(overlay, (0, 0), overlay)
-        
-        st.image(img, caption=chart_title, use_container_width=True)
-        #st.pyplot(spray_img)
+        st.pyplot(spray_img.figure)
     else:
         st.error("Player not found. Please check the spelling and try again.")
+``` 
 
 
