@@ -7,8 +7,9 @@ import pandas as pd
 st.title("Field Manager Spraychart Generator")
 st.write(
     "Choose an MLB player and then select on which stadium you want to see their hits overlayed. "
-    "The 'Toggle Only Hits at this Stadium' toggle will turn all hits for a player on and off. "
-    "Year Toggles will turn on or off the hit data from that year."
+    "The 'Toggle Only Hits at this Stadium' box will filter out hits that were not hit at the selected stadium. "
+    "Year Toggles will turn on or off the hits from that year. "
+    "The default data is from Spring Training 2025."
 )
 
 options_dict = {
@@ -35,32 +36,24 @@ options_list = ['Generic', 'Angels', 'Astros', 'Athletics', 'Blue Jays', 'Braves
                 'Dodgers', 'Giants', 'Guardians', 'Mariners', 'Marlins', 'Mets', 'Nationals', 'Orioles', 'Padres', 'Phillies',
                 'Pirates', 'Rangers', 'Rays', 'Red Sox', 'Reds', 'Rockies', 'Royals', 'Tigers', 'Twins', 'White Sox', 'Yankees'
                 ]
-# get the register data
-#data = chadwick_register()
-data = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/chadwick.csv')
 
-#def load_original_data():
-#    url = 'https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/chadwick.csv'
-#    response = requests.get(url)
-#    if response.status_code == 200:
-#        return pd.read_csv(StringIO(response.text))
-#    else:
-#        st.error("Failed to load data from GitHub.")
-#        return None'
+data = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/spraychart_player_list.csv')
 
 
 #data = data.loc[data['mlb_played_last'].isin([2024, 2023, 2022])]
 full_names = data.apply(lambda row: f"{row['name_first']} {row['name_last']}", axis=1).tolist()
+full_names.sort()
+full_names = [s.title() for s in full_names]
 
-
-entered_name = st.selectbox("Pick an MLB Player.", full_names)
+default_index = full_names.index('Bryce Harper')
+entered_name = st.selectbox("Pick an MLB Player.", full_names, index=default_index)
 name_first = entered_name.split(' ')[0]
 name_last = entered_name.split(' ')[1]
 #name_first = st.text_input("Enter Player First Name:")
 #name_last = st.text_input("Enter Player Last Name:")
 team_stadium = st.selectbox("Choose a stadium:", options_list)
 team_stadium_display = options_dict_2.get(team_stadium, None)
-away_off = st.checkbox('Toggle Only Hits at this Stadium')
+away_off = st.checkbox('Only Hits at this Stadium')
 year_2024 = st.checkbox('2024')
 year_2023 = st.checkbox('2023')
 year_2022 = st.checkbox('2022')
