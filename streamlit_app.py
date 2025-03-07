@@ -40,16 +40,16 @@ options_list = ['Generic', 'Angels', 'Astros', 'Athletics', 'Blue Jays', 'Braves
                 ]
 # get the register data
 data = chadwick_register()
-'''
-def load_original_data():
-    url = 'https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/chadwick.csv'
-    response = requests.get(url)
-    if response.status_code == 200:
-        return pd.read_csv(StringIO(response.text))
-    else:
-        st.error("Failed to load data from GitHub.")
-        return None'
-'''
+
+#def load_original_data():
+#    url = 'https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/chadwick.csv'
+#    response = requests.get(url)
+#    if response.status_code == 200:
+#        return pd.read_csv(StringIO(response.text))
+#    else:
+#        st.error("Failed to load data from GitHub.")
+#        return None'
+
 
 data = data.loc[data['mlb_played_last'].isin([2024, 2023, 2022])]
 full_names = data.apply(lambda row: f"{row['name_first']} {row['name_last']}", axis=1).tolist()
