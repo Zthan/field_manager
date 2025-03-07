@@ -64,14 +64,13 @@ away_off = st.checkbox('Toggle Only Hits at this Stadium')
 year_2024 = st.checkbox('2024')
 year_2023 = st.checkbox('2023')
 year_2022 = st.checkbox('2022')
-#year_2025 = st.checkbox('2025')
+
 
 
 pitch_data_22 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2022_spraychart_events.csv')
 pitch_data_23 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2023_spraychart_events.csv')
 pitch_data_24 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2024_spraychart_events.csv')  # Get the data for the spray chart
-#pitch_data_25 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2025_spraychart_events.csv')  # Get the data for the spray chart
-
+pitch_data_25 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2025_spraychart_events.csv')  # Get the data for the spray chart
 
 
 if name_first and name_last:
@@ -99,7 +98,7 @@ if name_first and name_last:
         chart_title = f"{hitter_name_first} {hitter_name_last} @ {team_stadium_display} Stadium"
 
         # Combine pitch data based on year toggles
-        pitch_data = pd.DataFrame()
+        pitch_data = pitch_data_25
         if year_2022:
             pitch_data = pd.concat([pitch_data, pitch_data_22])
         if year_2023:
