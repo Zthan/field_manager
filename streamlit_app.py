@@ -45,7 +45,7 @@ name_first = st.text_input("Enter Player First Name:")
 name_last = st.text_input("Enter Player Last Name:")
 team_stadium = st.selectbox("Choose a stadium:", options_list)
 team_stadium_display = options_dict_2.get(team_stadium, None)
-away_off = st.checkbox('Toggle All Hits')
+away_off = st.checkbox('Toggle Only Hits at this Stadium')
 
 if name_first and name_last:
     lookup_number = playerid_lookup(name_last, name_first, fuzzy=True)
@@ -70,7 +70,7 @@ if name_first and name_last:
         pitch_data.sort_values('events')
 
         if home_team:
-            if away_off == False:
+            if away_off == True:
                 pitch_data = pitch_data.loc[pitch_data['home_team'] == home_team]
 
         spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title, width=800, height=800)  # Get spray chart image
