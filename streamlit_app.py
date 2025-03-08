@@ -104,7 +104,7 @@ if name_first and name_last:
                 pitch_data = pitch_data.loc[pitch_data['home_team'] == home_team]
 
         # Generate spray chart
-        spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title)
+        spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title, width=800, height=800)
         
         # Display spray chart
         st.pyplot(spray_img.figure)
