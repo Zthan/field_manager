@@ -107,7 +107,8 @@ if name_first and name_last:
         spray_img = spraychart(pitch_data, team_stadium_display, title=chart_title, width=800, height=800)
         
         # Display spray chart
-        st.pyplot(spray_img.figure)
+        if st.button("Let's go already!"):
+            st.pyplot(spray_img.figure)
     else:
         st.error("Player not found. Please check the spelling and try again.")
 
