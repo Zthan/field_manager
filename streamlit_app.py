@@ -65,6 +65,8 @@ pitch_data_22 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manag
 pitch_data_23 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2023_spraychart_events.csv')
 pitch_data_24 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2024_spraychart_events.csv')
 pitch_data_25 = pd.read_csv('https://raw.githubusercontent.com/Zthan/field_manager/refs/heads/main/pitch_data_2025_spraychart_events.csv')
+# experimenting with adjusting hc_y data to see if I can fix some of the homerun dots.  Apparently the stadium images have some adjustments on them
+#pitch_data_24["hc_y"] = pitch_data_24['hc_y'] - 10
 
 # If player name is entered
 if name_first and name_last:
